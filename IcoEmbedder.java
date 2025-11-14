@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.nio.file.Files;
 import java.io.FileOutputStream;
@@ -10,24 +11,33 @@ public class IcoEmbedder {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Upload File");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(400,300);
+            frame.setSize(175,175);
             frame.setLayout(null);
 
             final File[] icoFile = {null};
             final File[] pdfFile = {null};
             final int[] offset = {0};
-            
+
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            panel.setBounds(0,0,150,200);
+
             JButton uploadBtn = new JButton("Upload .ico");
-            uploadBtn.setBounds(50,50,150,40);
-            frame.add(uploadBtn);
-
             JButton pdfBtn = new JButton("Upload .pdf");
-            pdfBtn.setBounds(50,120,150,40);
-            frame.add(pdfBtn);
-
             JButton embedButton = new JButton("Embed Files");
-            embedButton.setBounds(50,200,150,40);
-            frame.add(embedButton);
+
+            uploadBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+            pdfBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+            embedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            panel.add(Box.createVerticalStrut(10));
+            panel.add(uploadBtn);
+            panel.add(Box.createVerticalStrut(10));
+            panel.add(pdfBtn);
+            panel.add(Box.createVerticalStrut(10));
+            panel.add(embedButton);
+
+            frame.add(panel);
 
             uploadBtn.addActionListener(e -> {
                 JFileChooser chooser = new JFileChooser();
@@ -99,6 +109,7 @@ public class IcoEmbedder {
 
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
+            panel.setVisible(true);
         });
     }
 }
