@@ -21,7 +21,7 @@ public class IcoEmbedder {
             uploadBtn.setBounds(50,50,150,40);
             frame.add(uploadBtn);
 
-            JButton pdfBtn = new JButton("Upload .ico");
+            JButton pdfBtn = new JButton("Upload .pdf");
             pdfBtn.setBounds(50,120,150,40);
             frame.add(pdfBtn);
 
