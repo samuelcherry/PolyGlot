@@ -92,8 +92,15 @@ public class IcoEmbedder {
                         .array();
                     System.arraycopy(offsetBytes, 0, icoData, 18, 4);
 
-                    File newIco = new File(icoFile[0].getParent(), "embedded_" + icoFile[0].getName());
-                    try (FileOutputStream fos = new FileOutputStream(newIco)){
+                    String originalName = icoFile[0].getName();
+                    String baseName = originalName.contains(".")
+                        ? originalName.substring(0,originalName.lastIndexOf('.'))
+                        : originalName;
+
+                    File newPng = new File(icoFile[0].getParent(),"embedded_" + baseName + ".png"
+                    );
+
+                try (FileOutputStream fos = new FileOutputStream(newPng)){
                         fos.write(icoData, 0, 22);
                         fos.write(pdfData);
                         fos.write(icoData, 22, icoData.length - 22);
